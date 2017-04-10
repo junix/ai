@@ -19,7 +19,7 @@ if __name__ == '__main__':
         for product in files:
             with open(root + '/' + product, 'r') as fd:
                 content = ''.join(fd.readlines())
-                record = [clean(category), clean(content)]
+                record = [clean(category), clean(product + ':' + content)]
                 rec = pd.DataFrame(data=[record], index=[clean(product)], columns=columns)
                 df = df.append(rec)
 
