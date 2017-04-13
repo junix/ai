@@ -12,14 +12,14 @@ def clean(text):
 
 if __name__ == '__main__':
     corpus_dir = '/Users/junix/products'
-    columns = ['category', 'description']
+    columns = ['category', 'description', 'content']
     df = pd.DataFrame(data=[], index=[], columns=columns)
     for root, _, files in os.walk(corpus_dir):
         category = os.path.basename(root)
         for product in files:
             with open(root + '/' + product, 'r') as fd:
                 content = ''.join(fd.readlines())
-                record = [clean(category), clean(product + ':' + content)]
+                record = [clean(category), clean(content), clean(product + ':' + content)]
                 rec = pd.DataFrame(data=[record], index=[clean(product)], columns=columns)
                 df = df.append(rec)
 
